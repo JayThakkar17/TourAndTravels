@@ -1,0 +1,104 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Visa_CafeMasterPage.master.cs" Inherits="Visa_CafeMasterPage" %>
+
+
+                    <%   if (Session["Type"].ToString() == "V")
+                         {%>
+
+                    <li>
+                        <a href="loginpage.aspx">Register Now/Log In</a><br />
+
+                    </li>
+                    <% } %>
+                    <% else
+                         {%>
+                    <li>
+                        <a href="logout.aspx">Log Out</a><br />
+                    </li>
+
+                    <% } %>
+                </ul>
+            </div>
+            <nav class="main-navigation text-left hidden-xn hidden-sn">
+                <ul>
+                    <li><a href="temp1.aspx">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="has-submenu">About Us</a>
+                        <ul class="sub-menu">
+                            <li><a href="companyprofile.aspx">Company Profile</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-submenu">Services</a>
+                        <ul class="sub-menu">
+                            <li><a href="overview.aspx">Overview</a></li>
+                            <li>
+                                <a href="#">Test & Coaching <i class="fa fa-angle-right"></i></a>
+                                <ul>
+                                    <li><a href="ielts.aspx">IELTS</a></li>
+                                    <li><a href="pte.aspx">PTE</a></li>
+                                    <li><a href="tofel.aspx">TOEFL</a></li>
+                                    <li><a href="gre.aspx">GRE</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="visaservice.aspx">Visa <i class="fa fa-angle-right"></i></a>
+                                <ul>
+                                    <li><a href="uk.aspx">UK</a></li>
+                                    <li><a href="canada.aspx">Canada</a></li>
+                                    <li><a href="usa.aspx">USA</a></li>
+                                </ul>
+                            </li>                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="has-submenu">Study Destinations</a>
+                        <ul class="sub-menu">
+
+                            <li><a href="study-in-canada.aspx">study in Canada</a></li>
+                            <li><a href="Study-In-USA.aspx">Study in USA</a></li>
+                            <li><a href="Study-in-UK.aspx">Study in UK</a></li>
+
+                        </ul>
+                    </li>
+
+                    <%if (Session["Type"].ToString() == "A-Admin")
+                      {
+                    %>
+                    <li><a href="#" class="has-submenu">Reports</a>
+                        <ul class="sub-menu ">
+                            <li><a href="RptDateWise.aspx">Date Wise </a></li>
+                            <li><a href="RptCountryWise.aspx">Counyrt Wise </a></li>
+                            <li><a href="RptStudentWise.aspx">Student Wise </a></li>
+                            <li><a href="RptConsultant.aspx">Consultant Wise </a></li>
+                            <li><a href="register_grid.aspx">Register </a></li>
+
+
+
+                        </ul>
+                    </li>
+                    <li><a href="type.aspx">Login Type</a></li>
+                    <li><a href="#" class="has-submenu">Masters'</a>
+                        <ul class="sub-menu ">
+                            <li><a href="Application_m.aspx">Application_M </a></li>
+                            <li><a href="Batch_aspx.aspx">Batch_M </a></li>
+                            <li><a href="city_m.aspx">City_M </a></li>
+                            <li><a href="Consultant_M.aspx">Consultant_M</a></li>
+
+                            <li><a href="country_m.aspx">Country_M</a></li>
+                            <li><a href="degree_course_m.aspx">Digree_Course_M</a></li>
+                            <li><a href="document_m.aspx">Document_M</a></li>
+                            <li><a href="Faculty_m.aspx">Faculty_M</a></li>
+                            <li><a href="professional_course_m.aspx">Professional_Course_M</a></li>
+                            <li><a href="State_m.aspx">State_M</a></li>
+                            <li><a href="University_Application_M.aspx">University_Application_M</a></li>
+                            <li><a href="Univercity.aspx">University_M</a></li>
+                            <li><a href="User_m.aspx">User_M</a></li>
+                            <li><a href="Visa_Application_M.aspx">Visa_Application_M</a></li>
+                            <li><a href="Visa_Cafe_M.aspx">Visa_Cafe_M</a></li>
+
+                        </ul>
+                    </li>
+                    <%} %>

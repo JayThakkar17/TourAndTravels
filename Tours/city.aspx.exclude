@@ -1,0 +1,86 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+    CodeFile="city.aspx.cs" Inherits="city" %>
+
+<%@ Register TagPrefix="obout" Namespace="OboutInc.Calendar2" Assembly="obout_Calendar2_NET" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<form >
+    <%--
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>--%>
+    <div class="fullbody">
+        <div class="blank">
+        </div>
+        <div class="div1" style="display: block;">
+            <table>
+                <tr>
+                 <td >
+                    <asp:Label ID="Label1" class="control-label" Text="City Name" runat="server"></asp:Label>
+                    </td> 
+                    <td>
+                         <asp:TextBox ID="txtcity_name" runat="server" class="txtbox" placeholder=" enter city "></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                 <td >
+                    <asp:Label ID="Label2" class="control-label" Text="State Name" runat="server"></asp:Label>
+                    </td> 
+                    <td>
+                     
+                        <asp:DropDownList ID="ddlstate" class="txtbox" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Button ID="btnsubmit" class="btnmy" runat="server" Text="Insert" OnClick="btnsubmit_Click" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Button ID="btnupdate" class="btnmy" runat="server" Text="Update" OnClick="btnupdate_Click" />
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <asp:Button ID="btndelete" class="btnmy" runat="server" Text="Delete" OnClick="btndelete_Click" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Button ID="Button1" runat="server" class="btnmy" Text="delete" OnClick="btndelete_Click" />
+                    </td>
+                </tr>
+               
+            </table>
+        </div>
+        <div class="divgrid">
+            <div id="Export">
+                <div id="Print">
+                    <asp:GridView ID="grd2" runat="server" AutoGenerateColumns="false" OnRowCommand="grd2_RowCommand">
+                        <Columns>
+                            <asp:TemplateField HeaderText="city Id">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="text-blue" Text="<%#Bind('city_id') %>"
+                                        CommandName="city_id" CommandArgument='<%#Bind("city_id") %>'><i class="fa fa-2x fa-file"></i></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="city_name" HeaderText="city name" />
+                            <asp:BoundField DataField="state_id" HeaderText="state id" />
+                        </Columns>
+                    </asp:GridView>
+                    <asp:LinkButton ID="LinkButton5" TabIndex="6" CssClass="btn btn-success" runat="server"
+                        OnClientClick="tableToExcel('Export','Export')"><i class="glyphicon glyphicon-export">
+                        </i> Export</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton2" TabIndex="6" CssClass="btn btn-success" runat="server"
+                        OnClientClick="Print('Export')('export','export')"><i class="glyphicon glyphicon-print">
+                        </i> Print</asp:LinkButton>
+                </div>
+    </div>
+    </div> </div>
+    <%-- </ContentTemplate> 
+    </asp:UpdatePanel> 
+    --%>
+    </form>
+</asp:Content>

@@ -1,0 +1,132 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+public partial class city : System.Web.UI.Page
+{
+    General_Function gn = new General_Function();
+    db_conn cn = new db_conn();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            
+            if (!IsPostBack)
+            {
+                binddropdown();
+                DataSet ds = new DataSet();
+                ds = cn.select("select * from city order by 1");
+                gn.fill_grid(ds, grd2);
+            }
+        }
+        catch
+        {
+
+        }
+    }
+
+
+
+
+
+
+
+    void binddropdown()
+    {
+        try
+        {
+
+            General_Function gf = new General_Function();
+
+            db_conn cn = new db_conn();
+            gf.fillcombo("select state_id,state_name from state", ddlstate, "state_name", "state_id", "select");
+        }
+        catch
+        {
+        }
+
+
+
+    }
+    protected void btnsubmit_Click(object sender, EventArgs e)
+    {
+        try
+        {
+
+            string str = " insert into city (city_name,state_id) values ('" + txtcity_name.Text + "','" + ddlstate.SelectedValue + "' )";
+            db_conn cn = new db_conn();
+            cn.modify(str);
+            Response.Write("<script>alert('Record inserted ')</script");
+        }
+        catch
+        {
+        }
+    }
+    protected void btnupdate_Click(object sender, EventArgs e)
+    {
+        try
+        {
+
+            string str2 = "update city set city_name ='" + txtcity_name.Text + "',state_id ='" + ddlstate.SelectedValue + "' where state_id='" + ddlstate.SelectedValue + "'";
+
+            cn.modify(str2);
+            Response.Write("<script>alert('Record  updated ')</script");
+
+            string str3 = "select * from city order by 1 ";
+            DataSet ds = new DataSet();
+            ds = cn.select(str3);
+            grd2.DataSource = ds.Tables[0];
+            grd2.DataBind();
+        }
+        catch
+        {
+        }
+    }
+    protected void grd2_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            if (e.CommandName == "city_id")
+            {
+                string ecode = e.CommandArgument.ToString();
+                string str3 = "select * from city WHERE city_id ='" + ecode + "' ";
+                DataSet ds = new DataSet();
+                ds = cn.select(str3);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    txtcity_name.Text = ds.Tables[0].Rows[0]["city_name"].ToString();
+                    ddlstate.SelectedValue = ds.Tables[0].Rows[0]["state_id"].ToString();
+
+                }
+
+
+            }
+        }
+        catch
+        { 
+        }
+
+    }
+
+
+
+
+
+
+
+    protected void btndelete_Click(object sender, EventArgs e)
+    {
+        string strdelete = "delete from city where city_name='" + txtcity_name .Text + "'";
+        cn.modify(strdelete);
+        Response.Write("<script>alert('Record deleted Successfully')</script>");
+        // lblmsg.Text = "delete successfully";
+        //lblmsg.Visible = true;
+        //clearText();
+        //bindGrid();
+    }
+}
+
+

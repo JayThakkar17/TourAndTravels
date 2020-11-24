@@ -1,0 +1,196 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="TravelsMasterPage.master.cs"
+    Inherits="TravelsMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+<head id="Head1" runat="server">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Travel</title>
+      <script type="text/javascript">
+          var tableToExcel = (function () {
+              var uri = 'data:application/vnd.ms-excel;base64,'
+    , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+    , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+              return function (table, name) {
+                  if (!table.nodeType) table = document.getElementById(table)
+                  var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+                  window.location.href = uri + base64(format(template, ctx))
+              }
+          })()
+    </script>
+    <!-- PRINT-->
+    <script type="text/javascript" language="javascript">
+        function Print(id) {
+            var printFriendly = document.getElementById(id)
+            var printWin = window.open("about:blank", "", "menubar=no;status=no;toolbar=no;");
+            printWin.document.write("<html><body>" + printFriendly.innerHTML + "</body></html>");
+            printWin.document.close();
+            printWin.window.print();
+            printWin.close();
+        }
+    </script>
+
+
+
+    <!--
+			CSS
+			============================================= -->
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/main.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+ #button    {
+    color: #fff;
+    background: #f8b600;
+    border: 1px solid transparent;
+}
+    </style>
+</head>
+<body>
+    <header id="header">
+				<div class="header-top">
+					<div class="container">
+			  		<div class="row align-items-center">
+			  			<div class="col-lg-6 col-sm-6 col-6 header-top-left">
+			  				<ul>
+			  				</ul>			
+			  			</div>
+			  			<div class="col-lg-6 col-sm-6 col-6 header-top-right">
+							<div class="header-social">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								
+							</div>
+			  			</div>
+			  		</div>			  					
+					</div>
+				</div>
+				<div class="container main-menu">
+					<div class="row align-items-center justify-content-between d-flex">
+				      <div id="logo">
+				        <a href="index.aspx"><img src="img/logo.png" alt="" title="" /></a>
+				      </div>
+				      <nav id="nav-menu-container">
+                      <b><h4 style="color:#fab700">WELCOME:<%=Session["Email"].ToString() %></h4><h6 style="color:#fab700"></h6></b>
+				        <ul class="nav-menu"> 
+                        
+                         
+                         
+                         
+				          <li><a href="index.aspx">Home</a></li>
+                          <li><a href="about.aspx">About</a></li>
+                            <%   if (Session["Type"].ToString() != "V")
+                         {%>
+                           <%   if (Session["Type"].ToString() != "C")
+                         {%>
+				          <li><a href="frmPackage_M.aspx">Packages</a></li>
+                          
+				          <li><a href="frmHotel_M.aspx" >Hotels</a></li>
+                             <% } %>
+				          <li class="menu-has-children"><a href="">Transaction</a>
+                          <ul>
+                             
+                              <li><a href="frmCustomer_travel_T.aspx" >Customer Travel</a></li>
+                              <li><a href="frmfeedback.aspx" >Feedback</a></li>
+                              <li><a href="frmPayment_T.aspx" >Payment</a></li>
+                               
+                              <li><a href="frmReservation_M.aspx" >Reservation</a></li>
+                          </ul> <% } %>
+				         
+                            <%   if (Session["Type"].ToString() == "A")
+                         {%>
+				          <li class="menu-has-children"><a href="">Masters</a>
+				            <ul>
+                                  <li><a href="frmBus_M.aspx" >Bus</a></li>
+                                  <li><a href="frmCar_M.aspx" >Car</a></li>
+				            	  <li><a href="frmCity_M.aspx" >City</a></li>
+                                  <li><a href="frmCustomer_M.aspx" >Customer</a></li>
+                                  <li><a href="frmHotel_M.aspx" >Hotel</a></li>
+                                  <li><a href="frmPackage_M.aspx" >Package</a></li>
+                                  <li><a href="frmPlane_M.aspx" >Plane</a></li>
+                                  <li><a href="frmReservation_M.aspx" >Reservation</a></li>
+                                  <li><a href="frmState_M.aspx" >State</a></li>
+                                  <li><a href="frmTrain_M.aspx" >Train</a></li>
+                                  <li><a href="frmTravelPackage_M.aspx" >Travel Package</a></li>
+                                
+						           </ul>
+				          </li>	<%}%>				          					          		          
+				          <li><a href="contact.aspx">Contact</a></li>
+                                          <%   if (Session["Type"].ToString() != "V")
+                                               {%>
+                                               
+				          <li><a href="frmchangepassword.aspx" >Change password</a></li>
+				          <li><a href="Logout.aspx" >Logout</a></li>
+             <%}
+                                               else
+                                               { %>
+            	          <li><a href="frmLogin.aspx" >Login</a></li>
+            <%} %>
+
+
+				        </ul>
+				      </nav><!-- #nav-menu-container -->					      		  
+					</div>
+				</div>
+			</header>
+    <!-- #header -->
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+    <!-- start footer Area -->
+    <footer class="footer-area">
+				<div class="container">
+
+					<div class="row footer-bottom d-flex justify-content-between align-items-center">
+						<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>                    document.write(new Date().getFullYear());</script> All rights reserved  
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+						<div class="col-lg-4 col-sm-12 footer-social">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							
+						</div>
+					</div>
+				</div>
+			</footer>
+    <!-- End footer Area -->
+    <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/easing.min.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
